@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:padang_kos/pages/home_page.dart';
 import 'package:padang_kos/theme.dart';
 
 class SplashPage extends StatelessWidget {
@@ -54,7 +55,14 @@ class SplashPage extends StatelessWidget {
                       width: 210,
                       height: 50,
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
+                        },
                         color: purpleColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(17),
