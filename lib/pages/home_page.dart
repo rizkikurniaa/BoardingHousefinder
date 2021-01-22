@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:padang_kos/models/districts.dart';
 import 'package:padang_kos/theme.dart';
+import 'package:padang_kos/widgets/districts_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -35,6 +37,55 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(
               height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: edge),
+              child: Text(
+                'Popular Districts',
+                style: regulerTextStyle.copyWith(fontSize: 16),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+              height: 150,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  SizedBox(
+                    width: 24,
+                  ),
+                  DistrictsCard(
+                    Districts(
+                        id: 1,
+                        name: 'Kuranji',
+                        imageUrl: 'assets/images/city1.png'),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  DistrictsCard(
+                    Districts(
+                        id: 2,
+                        name: 'Pauh',
+                        imageUrl: 'assets/images/city2.png',
+                        isPopular: true),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  DistrictsCard(
+                    Districts(
+                        id: 3,
+                        name: 'Lubeg',
+                        imageUrl: 'assets/images/city3.png'),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
             )
           ],
         ),
