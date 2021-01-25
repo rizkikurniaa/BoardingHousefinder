@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:padang_kos/models/districts.dart';
+import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/districts_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
@@ -105,18 +106,51 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                Column(
-                  children: [
-                    SpaceCard(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    SpaceCard(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    SpaceCard(),
-                  ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: edge),
+                  child: Column(
+                    children: [
+                      SpaceCard(
+                        Space(
+                          id: 1,
+                          name: 'Kos Kumar',
+                          imgUrl: 'assets/images/space1.png',
+                          price: 52,
+                          district: 'Kuranji',
+                          city: 'Padang',
+                          rating: 4,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SpaceCard(
+                        Space(
+                          id: 2,
+                          name: 'Kos Kikulabs',
+                          imgUrl: 'assets/images/space2.png',
+                          price: 80,
+                          district: 'Padang Timur',
+                          city: 'Padang',
+                          rating: 5,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SpaceCard(
+                        Space(
+                          id: 3,
+                          name: 'Kos Sulistyo',
+                          imgUrl: 'assets/images/space3.png',
+                          price: 32,
+                          district: 'Pauh',
+                          city: 'Padang',
+                          rating: 4,
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
