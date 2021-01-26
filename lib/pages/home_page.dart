@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:padang_kos/models/districts.dart';
 import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/districts_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
+import 'package:padang_kos/widgets/tips_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -151,7 +154,35 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                // NOTE : TIPS & GUIDANCE
+                Padding(
+                  padding: EdgeInsets.only(left: edge),
+                  child: Text(
+                    'Tips & Guidance',
+                    style: regulerTextStyle.copyWith(fontSize: 16),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: edge,
+                  ),
+                  child: Column(
+                    children: [
+                      TipsCard(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TipsCard(),
+                    ],
+                  ),
+                ),
               ],
             ),
           )),
