@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/facility_item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        launch(url);
+      } else {
+        throw (url);
+      }
+    }
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -235,9 +244,15 @@ class DetailPage extends StatelessWidget {
                               'Jln. M. Yunus No. 22\nPadang',
                               style: greyTextStyle,
                             ),
-                            Image.asset(
-                              'assets/images/btn_map.png',
-                              width: 40,
+                            InkWell(
+                              onTap: () {
+                                launchUrl(
+                                    'https://goo.gl/maps/k9a4k4D3LbHFMyvS9');
+                              },
+                              child: Image.asset(
+                                'assets/images/btn_map.png',
+                                width: 40,
+                              ),
                             ),
                           ],
                         ),
@@ -252,7 +267,9 @@ class DetailPage extends StatelessWidget {
                         height: 50,
                         width: MediaQuery.of(context).size.width - (2 * edge),
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            launchUrl('tel:+6281234567890');
+                          },
                           color: purpleColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(17),
