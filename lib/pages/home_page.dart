@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:padang_kos/models/city.dart';
 import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/models/tips.dart';
+import 'package:padang_kos/providers/space_provider.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/bottom_navbar_item.dart';
 import 'package:padang_kos/widgets/city_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
 import 'package:padang_kos/widgets/tips_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var spaceProvider = Provider.of<SpaceProvider>(context);
+    spaceProvider.getRecommendedSpace();
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
