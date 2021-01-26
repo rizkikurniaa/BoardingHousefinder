@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                       SpaceCard(
                         Space(
                           id: 1,
-                          name: 'Kos Kumar',
+                          name: 'Kos Rizki',
                           imgUrl: 'assets/images/space1.png',
                           price: 52,
                           district: 'Kuranji',
@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
                           price: 80,
                           district: 'Padang Timur',
                           city: 'Padang',
-                          rating: 5,
+                          rating: 3,
                         ),
                       ),
                       SizedBox(
@@ -146,7 +146,7 @@ class HomePage extends StatelessWidget {
                           price: 32,
                           district: 'Pauh',
                           city: 'Padang',
-                          rating: 4,
+                          rating: 3,
                         ),
                       ),
                     ],
