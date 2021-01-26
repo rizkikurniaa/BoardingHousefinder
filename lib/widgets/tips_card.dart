@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:padang_kos/models/tips.dart';
 import 'package:padang_kos/theme.dart';
 
 class TipsCard extends StatelessWidget {
+  final Tips tips;
+  TipsCard(this.tips);
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Image.asset(
-          'assets/images/tips1.png',
+          tips.imgUrl,
           width: 80,
         ),
         SizedBox(
@@ -17,7 +21,7 @@ class TipsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'City Guidlines',
+              tips.title,
               style: blackTextStyle.copyWith(
                 fontSize: 18,
               ),
@@ -26,7 +30,7 @@ class TipsCard extends StatelessWidget {
               height: 4,
             ),
             Text(
-              'Updated 26 Jan',
+              'Updated ${tips.updatedAt}',
               style: greyTextStyle,
             )
           ],
