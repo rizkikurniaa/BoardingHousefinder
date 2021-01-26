@@ -177,6 +177,60 @@ class DetailPage extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      // NOTE : PHOTO
+                      Padding(
+                        padding: EdgeInsets.only(left: edge),
+                        child: Text(
+                          'Photos',
+                          style: regulerTextStyle.copyWith(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Container(
+                        height: 88,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(
+                              width: edge,
+                            ),
+                            Image.asset(
+                              'assets/images/photo1.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: 18,
+                            ),
+                            Image.asset(
+                              'assets/images/photo2.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: 18,
+                            ),
+                            Image.asset(
+                              'assets/images/photo3.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: edge,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
