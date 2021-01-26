@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:padang_kos/pages/error_page.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/facility_item.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,7 +11,13 @@ class DetailPage extends StatelessWidget {
       if (await canLaunch(url)) {
         launch(url);
       } else {
-        throw (url);
+        // throw (url);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ErrorPage(),
+          ),
+        );
       }
     }
 
@@ -246,8 +253,9 @@ class DetailPage extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                launchUrl(
-                                    'https://goo.gl/maps/k9a4k4D3LbHFMyvS9');
+                                // launchUrl(
+                                //     'https://goo.gl/maps/k9a4k4D3LbHFMyvS9');
+                                launchUrl('qwertyuio');
                               },
                               child: Image.asset(
                                 'assets/images/btn_map.png',
