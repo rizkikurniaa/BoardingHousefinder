@@ -71,41 +71,43 @@ class SpaceCard extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                space.name,
-                style: blackTextStyle.copyWith(
-                  fontSize: 18,
-                ),
-              ),
-              SizedBox(
-                height: 2,
-              ),
-              Text.rich(
-                TextSpan(
-                  text: '\$${space.price}',
-                  style: purpleTextStyle.copyWith(
-                    fontSize: 16,
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  space.name,
+                  style: blackTextStyle.copyWith(
+                    fontSize: 18,
                   ),
-                  children: [
-                    TextSpan(
-                        text: '/month',
-                        style: greyTextStyle.copyWith(
-                          fontSize: 16,
-                        )),
-                  ],
                 ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                '${space.city}, ${space.country}',
-                style: greyTextStyle,
-              )
-            ],
+                SizedBox(
+                  height: 2,
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: '\$${space.price}',
+                    style: purpleTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                    children: [
+                      TextSpan(
+                          text: '/month',
+                          style: greyTextStyle.copyWith(
+                            fontSize: 16,
+                          )),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  '${space.city}, ${space.country}',
+                  style: greyTextStyle,
+                )
+              ],
+            ),
           )
         ],
       ),

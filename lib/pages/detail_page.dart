@@ -3,6 +3,7 @@ import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/pages/error_page.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/facility_item.dart';
+import 'package:padang_kos/widgets/rating_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
@@ -64,71 +65,49 @@ class DetailPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  space.name,
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    text: '\$${space.price}',
-                                    style: purpleTextStyle.copyWith(
-                                      fontSize: 16,
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    space.name,
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 22,
                                     ),
-                                    children: [
-                                      TextSpan(
-                                          text: '/month',
-                                          style: greyTextStyle.copyWith(
-                                            fontSize: 16,
-                                          )),
-                                    ],
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text.rich(
+                                    TextSpan(
+                                      text: '\$${space.price}',
+                                      style: purpleTextStyle.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                            text: '/month',
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 16,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                  color: greyColor,
-                                ),
-                              ],
+                              children: [1, 2, 3, 4, 5].map((index) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    left: 2,
+                                  ),
+                                  child: RatingItem(
+                                    index: index,
+                                    rating: space.rating,
+                                  ),
+                                );
+                              }).toList(),
                             )
                           ],
                         ),
