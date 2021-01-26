@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:padang_kos/models/districts.dart';
+import 'package:padang_kos/models/city.dart';
 import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/models/tips.dart';
+import 'package:padang_kos/providers/space_provider.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/bottom_navbar_item.dart';
-import 'package:padang_kos/widgets/districts_card.dart';
+import 'package:padang_kos/widgets/city_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
 import 'package:padang_kos/widgets/tips_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var spaceProvider = Provider.of<SpaceProvider>(context);
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -64,8 +68,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 24,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 1,
                         name: 'Kuranji',
                         imageUrl: 'assets/images/city1.png'),
@@ -73,8 +77,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 2,
                         name: 'Pauh',
                         imageUrl: 'assets/images/city2.png',
@@ -83,8 +87,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 3,
                         name: 'Lubeg',
                         imageUrl: 'assets/images/city3.png'),
@@ -110,51 +114,32 @@ class HomePage extends StatelessWidget {
               height: 16,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: edge),
-              child: Column(
-                children: [
-                  SpaceCard(
-                    Space(
-                      id: 1,
-                      name: 'Kos Rizki',
-                      imgUrl: 'assets/images/space1.png',
-                      price: 52,
-                      district: 'Kuranji',
-                      city: 'Padang',
-                      rating: 4,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SpaceCard(
-                    Space(
-                      id: 2,
-                      name: 'Kos Kikulabs',
-                      imgUrl: 'assets/images/space2.png',
-                      price: 80,
-                      district: 'Padang Timur',
-                      city: 'Padang',
-                      rating: 3,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SpaceCard(
-                    Space(
-                      id: 3,
-                      name: 'Kos Sulistyo',
-                      imgUrl: 'assets/images/space3.png',
-                      price: 32,
-                      district: 'Pauh',
-                      city: 'Padang',
-                      rating: 3,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: edge,
+                ),
+                child: FutureBuilder(
+                  future: spaceProvider.getRecommendedSpace(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Space> data = snapshot.data;
+                      int index = 0;
+                      return Column(
+                        children: data.map((item) {
+                          index++;
+                          return Container(
+                            margin: EdgeInsets.only(
+                              top: index == 1 ? 0 : 30,
+                            ),
+                            child: SpaceCard(item),
+                          );
+                        }).toList(),
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                )),
             SizedBox(
               height: 30,
             ),

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/pages/error_page.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/facility_item.dart';
+import 'package:padang_kos/widgets/rating_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
+  final Space space;
+  DetailPage(this.space);
+
   @override
   Widget build(BuildContext context) {
     launchUrl(String url) async {
@@ -27,8 +32,8 @@ class DetailPage extends StatelessWidget {
         bottom: false,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/images/thumbnail.png',
+            Image.network(
+              space.imgUrl,
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
@@ -60,71 +65,49 @@ class DetailPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Kos Kikulabs',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    text: '\$52',
-                                    style: purpleTextStyle.copyWith(
-                                      fontSize: 16,
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    space.name,
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 22,
                                     ),
-                                    children: [
-                                      TextSpan(
-                                          text: '/month',
-                                          style: greyTextStyle.copyWith(
-                                            fontSize: 16,
-                                          )),
-                                    ],
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text.rich(
+                                    TextSpan(
+                                      text: '\$${space.price}',
+                                      style: purpleTextStyle.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                            text: '/month',
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 16,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/icon_star.png',
-                                  width: 20,
-                                  color: greyColor,
-                                ),
-                              ],
+                              children: [1, 2, 3, 4, 5].map((index) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    left: 2,
+                                  ),
+                                  child: RatingItem(
+                                    index: index,
+                                    rating: space.rating,
+                                  ),
+                                );
+                              }).toList(),
                             )
                           ],
                         ),
@@ -155,17 +138,17 @@ class DetailPage extends StatelessWidget {
                             FacilityItem(
                               name: 'kitchen',
                               imgUrl: 'assets/images/icon_kitchen.png',
-                              total: 2,
+                              total: space.numberOfKitchens,
                             ),
                             FacilityItem(
                               name: 'bedroom',
                               imgUrl: 'assets/images/icon_bedroom.png',
-                              total: 3,
+                              total: space.numberOfBedrooms,
                             ),
                             FacilityItem(
                               name: 'cupboard',
                               imgUrl: 'assets/images/icon_cupboard.png',
-                              total: 1,
+                              total: space.numberOfCupboards,
                             ),
                           ],
                         ),
@@ -190,38 +173,22 @@ class DetailPage extends StatelessWidget {
                         height: 88,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: [
-                            SizedBox(
-                              width: edge,
-                            ),
-                            Image.asset(
-                              'assets/images/photo1.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Image.asset(
-                              'assets/images/photo2.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Image.asset(
-                              'assets/images/photo3.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: edge,
-                            ),
-                          ],
+                          children: space.photos.map((item) {
+                            return Container(
+                              margin: EdgeInsets.only(
+                                left: 24,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.network(
+                                  item,
+                                  width: 110,
+                                  height: 88,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ),
                       ),
                       SizedBox(
@@ -248,13 +215,12 @@ class DetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Jln. M. Yunus No. 22\nPadang',
+                              '${space.address}\n${space.city}',
                               style: greyTextStyle,
                             ),
                             InkWell(
                               onTap: () {
-                                launchUrl(
-                                    'https://goo.gl/maps/k9a4k4D3LbHFMyvS9');
+                                launchUrl(space.mapUrl);
                               },
                               child: Image.asset(
                                 'assets/images/btn_map.png',
@@ -275,7 +241,7 @@ class DetailPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width - (2 * edge),
                         child: RaisedButton(
                           onPressed: () {
-                            launchUrl('tel:+6281234567890');
+                            launchUrl('tel:${space.phone}');
                           },
                           color: purpleColor,
                           shape: RoundedRectangleBorder(

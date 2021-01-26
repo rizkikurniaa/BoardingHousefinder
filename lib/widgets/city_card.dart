@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:padang_kos/models/districts.dart';
+import 'package:padang_kos/models/city.dart';
 import 'package:padang_kos/theme.dart';
 
-class DistrictsCard extends StatelessWidget {
-  final Districts districts;
+class CityCard extends StatelessWidget {
+  final City city;
 
-  DistrictsCard(this.districts);
+  CityCard(this.city);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class DistrictsCard extends StatelessWidget {
             Stack(
               children: [
                 Image.asset(
-                  districts.imageUrl,
+                  city.imageUrl,
                   width: 120,
                   height: 102,
                   fit: BoxFit.cover,
                 ),
-                districts.isPopular
+                city.isPopular
                     ? Align(
                         alignment: Alignment.topRight,
                         child: Container(
@@ -53,7 +53,7 @@ class DistrictsCard extends StatelessWidget {
               height: 11,
             ),
             Text(
-              districts.name,
+              city.name,
               style: blackTextStyle.copyWith(
                 fontSize: 16,
               ),
