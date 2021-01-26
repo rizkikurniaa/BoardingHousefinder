@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:padang_kos/models/districts.dart';
+import 'package:padang_kos/models/city.dart';
 import 'package:padang_kos/models/space.dart';
 import 'package:padang_kos/models/tips.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/bottom_navbar_item.dart';
-import 'package:padang_kos/widgets/districts_card.dart';
+import 'package:padang_kos/widgets/city_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
 import 'package:padang_kos/widgets/tips_card.dart';
 
@@ -64,8 +64,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 24,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 1,
                         name: 'Kuranji',
                         imageUrl: 'assets/images/city1.png'),
@@ -73,8 +73,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 2,
                         name: 'Pauh',
                         imageUrl: 'assets/images/city2.png',
@@ -83,8 +83,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  DistrictsCard(
-                    Districts(
+                  CityCard(
+                    City(
                         id: 3,
                         name: 'Lubeg',
                         imageUrl: 'assets/images/city3.png'),
@@ -119,8 +119,8 @@ class HomePage extends StatelessWidget {
                       name: 'Kos Rizki',
                       imgUrl: 'assets/images/space1.png',
                       price: 52,
-                      district: 'Kuranji',
-                      city: 'Padang',
+                      city: 'Kuranji',
+                      country: 'Padang',
                       rating: 4,
                     ),
                   ),
@@ -133,8 +133,8 @@ class HomePage extends StatelessWidget {
                       name: 'Kos Kikulabs',
                       imgUrl: 'assets/images/space2.png',
                       price: 80,
-                      district: 'Padang Timur',
-                      city: 'Padang',
+                      city: 'Padang Timur',
+                      country: 'Padang',
                       rating: 3,
                     ),
                   ),
@@ -147,8 +147,8 @@ class HomePage extends StatelessWidget {
                       name: 'Kos Sulistyo',
                       imgUrl: 'assets/images/space3.png',
                       price: 32,
-                      district: 'Pauh',
-                      city: 'Padang',
+                      city: 'Pauh',
+                      country: 'Padang',
                       rating: 3,
                     ),
                   ),
