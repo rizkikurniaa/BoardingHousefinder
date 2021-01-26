@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:padang_kos/models/districts.dart';
 import 'package:padang_kos/models/space.dart';
+import 'package:padang_kos/models/tips.dart';
 import 'package:padang_kos/theme.dart';
 import 'package:padang_kos/widgets/districts_card.dart';
 import 'package:padang_kos/widgets/space_card.dart';
@@ -175,11 +176,25 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      TipsCard(),
+                      TipsCard(
+                        Tips(
+                          id: 1,
+                          title: 'City Guidelines',
+                          imgUrl: 'assets/images/tips1.png',
+                          updatedAt: '26 Jan',
+                        ),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
-                      TipsCard(),
+                      TipsCard(
+                        Tips(
+                          id: 2,
+                          title: 'Padang Fairship',
+                          imgUrl: 'assets/images/tips2.png',
+                          updatedAt: '17 Dec',
+                        ),
+                      ),
                     ],
                   ),
                 ),
